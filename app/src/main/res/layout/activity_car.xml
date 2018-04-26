@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/app_ip_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ip地址(192.168.12.1)"
+        android:text="192.168.12.1" />
+
+    <EditText
+        android:id="@+id/app_port_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="端口(2022)"
+        android:text="2022" />
+
+    <Button
+        android:id="@+id/app_init_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="初始化Socket" />
+
+    <Button
+        android:id="@+id/app_release_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="释放Socket" />
+
+    <Button
+        android:id="@+id/btn_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="left" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="left" />
+
+        <Button
+            android:id="@+id/btn_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="right"
+
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="bottom" />
+
+    <Button
+        android:id="@+id/btn_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="stop" />
+
+    <Button
+        android:id="@+id/app_jump_blockly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转Blockly" />
+
+    <SurfaceView
+        android:id="@+id/SurfaceView"
+        android:layout_width="360dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp" />
+
+    <cn.jzvd.JZVideoPlayerStandard
+        android:id="@+id/jzvideo"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:visibility="gone" />
+</LinearLayout>

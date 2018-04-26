@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Pi_Car</string>
+    <string name="action_settings">赵老三制作</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="car_contrl">树莓派先锋一号</string>
+    <string name="strBackWard">后退</string>
+    <string name="strTurnLeft">左转</string>
+    <string name="strStop">停止</string>
+    <string name="strForWard">前进</string>
+    <string name="strTurnRight">右转</string>
+    <string name="strServod">转动摄像头</string>
+    <string name="info">关注树莓派最新动态尽在www.raspberrydiy.site</string>
+    <string name="python_activity_name">blockly python</string>
+    <string name="split_generate_message">Run the blocks to see them in code!</string>
+    <string name="toolbar_refresh">重新连接</string>
+</resources>

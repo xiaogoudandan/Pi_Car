@@ -1,0 +1,152 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+ >
+<TextView 
+        android:id="@+id/video" 
+	    android:text="视频地址" 
+	    android:layout_width="wrap_content" 
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/editText2"
+	    />
+	<EditText 
+	    android:id="@+id/editIP" 
+	    android:layout_width="match_parent" 
+	    android:layout_height="wrap_content" 
+	    android:layout_below="@+id/video"
+	    android:text="http://192.168.8.1:8083/?action=snapshot"
+	    />
+
+    <Button 
+        android:id="@+id/openbtn" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:text="打开"
+          android:layout_below="@+id/editIP"
+        />
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:textColor="#ff6600"
+        android:text="@string/car_contrl" />
+
+    <Button
+        android:id="@+id/btnBackward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnStop"
+        android:layout_below="@+id/btnStop"
+        android:text="@string/strBackWard"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/btnTurnLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnStop"
+        android:layout_alignBottom="@+id/btnStop"
+        android:layout_toLeftOf="@+id/btnStop"
+         android:textColor="#ffffff"
+        android:text="@string/strTurnLeft" />
+
+    <Button
+        android:id="@+id/btnTurnRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnStop"
+        android:layout_alignBottom="@+id/btnStop"
+        android:layout_toRightOf="@+id/btnStop"
+         android:textColor="#ffffff"
+        android:text="@string/strTurnRight" />
+
+    <Button
+        android:id="@+id/btnStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnForward"
+        android:layout_below="@+id/btnForward"
+        android:text="@string/strStop"
+         android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_toRightOf="@+id/textView3"
+        android:text="@string/info"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/btnServod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnBackward"
+        android:layout_centerHorizontal="true"
+        android:text="@string/strServod"
+         android:textColor="#ffffff" />
+  
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_below="@+id/button1"
+        android:layout_toLeftOf="@+id/button1"
+        android:ems="10"
+        android:hint="请输端口号" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_below="@+id/textView1"
+        android:text="确认" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button1"
+        android:layout_toLeftOf="@+id/button1"
+        android:ems="10"
+        android:hint="请输ip" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/openbtn"
+        android:layout_alignBottom="@+id/openbtn"
+        android:layout_alignLeft="@+id/btnTurnLeft"
+        android:text="当前访问地址"
+        android:textColor="#FF0000" />
+
+    <Button
+        android:id="@+id/btnForward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/strForWard"
+        android:textColor="#ffffff" />
+
+    <SurfaceView
+        android:id="@+id/surface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_below="@+id/btnTurnLeft" />
+
+</RelativeLayout>
