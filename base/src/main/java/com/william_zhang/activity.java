@@ -25,7 +25,7 @@ public class activity extends AppCompatActivity {
     ZLoadingTextView zTextView;
     @BindView(R2.id.z_custom_text_view)
     TextView zCustomTextView;
-    @BindView(R2.id.loading)
+    @BindView(R2.id.z_loading)
     LinearLayout loading;
 
     @Override

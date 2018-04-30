@@ -8,6 +8,9 @@ import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.william_zhang.base.utils.GsonUtil;
 import com.william_zhang.base.utils.RxBus;
 import com.william_zhang.base.utils.ShareParanceUtil;
 import com.william_zhang.pi_car.bean.SocketBean;
@@ -204,7 +207,11 @@ public class BlocklyService extends Service {
                             String message = new String(Arrays.copyOf(buffer,
                                     length)).trim();
                             //收到服务器过来的消息，就通过Broadcast发送出去
-                            rxBusPost(SocketBean.FROMSOCKET, message, "");
+                            try {
+                                RxBus.getInstance().post(GsonUtil.fromJson(message, SocketBean.class));
+                            } catch (JsonSyntaxException e) {
+                                e.printStackTrace();
+                            }
                             Log.d(TAG, "Read from server" + message);
                         }
                     }
@@ -277,6 +284,8 @@ public class BlocklyService extends Service {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            rxBusPost(SocketBean.ISCONNECT, "no", "");
         }
     }
 
@@ -290,6 +299,8 @@ public class BlocklyService extends Service {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            rxBusPost(SocketBean.ISCONNECT, "no", "");
         }
     }
 

@@ -66,7 +66,7 @@ public class SocketBean {
             return this;
         }
 
-        public SocketBuilder setType(String result) {
+        public SocketBuilder setResult(String result) {
             this.result = result;
             return this;
         }

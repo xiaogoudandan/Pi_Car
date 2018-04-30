@@ -134,4 +134,11 @@ public class RxBus {
             disposable.clear();
         }
     }
+
+    /**
+     * 移除所有
+     */
+    public void removeAll() {
+        mBus.onComplete();
+    }
 }

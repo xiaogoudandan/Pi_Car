@@ -18,6 +18,7 @@ import com.william_zhang.base.utils.ScreenUtil;
  */
 
 public class BottomView extends android.support.v7.widget.AppCompatButton {
+    private int state = 0;
 
     public BottomView(Context context) {
         super(context);
@@ -94,13 +95,40 @@ public class BottomView extends android.support.v7.widget.AppCompatButton {
                     params.topMargin = main.getHeight() - ScreenUtil.dip2px(getContext(), 200);
                     Log.e("RootMargin end:", Integer.toString(params.topMargin));
                     root.setLayoutParams(params);
+                    state = 1;
                 } else {
                     params.topMargin = main.getHeight() - getHeight();
                     Log.e("RootMargin end:", Integer.toString(params.topMargin));
                     root.setLayoutParams(params);
+                    state = 2;
                 }
                 break;
         }
         return true;
+    }
+
+
+    public void open() {
+        if (state != 1) {
+            ViewParent viewParent = getParent();
+            root = (RelativeLayout) viewParent;
+            main = (RelativeLayout) root.getParent();
+            params = (RelativeLayout.LayoutParams) root.getLayoutParams();
+            params.topMargin = main.getHeight() - ScreenUtil.dip2px(getContext(), 200);
+            root.setLayoutParams(params);
+            state = 1;
+        }
+    }
+
+    public void close() {
+        if (state != 2) {
+            ViewParent viewParent = getParent();
+            root = (RelativeLayout) viewParent;
+            main = (RelativeLayout) root.getParent();
+            params = (RelativeLayout.LayoutParams) root.getLayoutParams();
+            params.topMargin = main.getHeight() - getHeight();
+            root.setLayoutParams(params);
+            state = 2;
+        }
     }
 }

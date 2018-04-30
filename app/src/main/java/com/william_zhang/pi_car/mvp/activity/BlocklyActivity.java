@@ -28,9 +28,11 @@ import com.github.lzyzsd.jsbridge.BridgeWebView;
 import com.github.lzyzsd.jsbridge.BridgeWebViewClient;
 import com.github.lzyzsd.jsbridge.DefaultHandler;
 import com.google.blockly.android.codegen.CodeGenerationRequest;
+import com.google.blockly.android.codegen.LanguageDefinition;
 import com.google.blockly.android.codegen.LoggingCodeGeneratorCallback;
 import com.google.blockly.model.DefaultBlocks;
 import com.william_zhang.base.utils.ScreenUtil;
+import com.william_zhang.pi_car.BottomView;
 import com.william_zhang.pi_car.Manager.CarHtmlManager;
 import com.william_zhang.pi_car.R;
 import com.william_zhang.pi_car.constant.Key;
@@ -53,10 +55,13 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
     private ImageButton app_socket_status;
     private CarHtmlManager mJSBridge;
     private CarAidlInterface carAidl;
+    private BottomView mBottomView;
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             carAidl = CarAidlInterface.Stub.asInterface(iBinder);
+            presenter.setAIDL(carAidl);
+            presenter.startConnect();
         }
 
         @Override
@@ -78,7 +83,6 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
     @Override
     protected void onResume() {
         super.onResume();
-        setBottomView();
     }
 
     /**
@@ -91,12 +95,22 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
         rl_bottomview.setLayoutParams(layoutParams);
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (!frist) {
+            mBottomView.close();
+            frist = true;
+        }
+    }
+
+    private boolean frist = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        this.getApplicationContext().bindService(new Intent(this, BlocklyService.class), serviceConnection, Context.BIND_AUTO_CREATE);
         super.onCreate(savedInstanceState);
-        presenter.init();
+        presenter.init();//设置网页 以及注册rxbus
+        this.getApplicationContext().bindService(new Intent(this, BlocklyService.class), serviceConnection, Context.BIND_AUTO_CREATE);
     }
 
     /**
@@ -126,17 +140,31 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
         return new BlocklyPresenter(this);
     }
 
-    //下面是blockly相关 代码
+    /**
+     * 下面是blockly相关 代码
+     */
     CodeGenerationRequest.CodeGeneratorCallback codeGeneratorCallback = new CodeGenerationRequest.CodeGeneratorCallback() {
         @Override
-        public void onFinishCodeGeneration(String generatedCode) {
-            Toast.makeText(BlocklyActivity.this, generatedCode, Toast.LENGTH_LONG).show();
+        public void onFinishCodeGeneration(final String generatedCode) {
+            new AlertDialog.Builder(BlocklyActivity.this).setTitle("code").setMessage(generatedCode).setPositiveButton("运行", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    presenter.sendCode(generatedCode);
+                }
+            }).setNegativeButton("取消", null).show();
             Log.e(TAG, generatedCode);
-            //mJSBridge.executeCode(JavascriptUtil.makeJsString(generatedCode));
         }
     };
     private static final List<String> JAVASCRIPT_GENERATORS = Arrays.asList(
             "car/generators.js"
+    );
+
+    private static final LanguageDefinition PYTHON_LANGUAGE_DEF
+            = new LanguageDefinition("car/python_compressed.js", "Blockly.Python");
+
+
+    private static final List<String> PYTHON_GENERATORS = Arrays.asList(
+            "car/generators_python.js"
     );
     private static final String BLOCK_TOOLBOX = DefaultBlocks.TOOLBOX_PATH;
     private static final List<String> BLOCK_DEFINITIONS = DefaultBlocks.getAllBlockDefinitions();
@@ -182,7 +210,31 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
     @NonNull
     @Override
     protected List<String> getGeneratorsJsPaths() {
-        return JAVASCRIPT_GENERATORS;
+        return PYTHON_GENERATORS;
+    }
+
+
+    @NonNull
+    @Override
+    protected LanguageDefinition getBlockGeneratorLanguage() {
+        return PYTHON_LANGUAGE_DEF;
+    }
+
+
+    private static final String SAVE_FILENAME = "python_car_workspace.xml";
+    private static final String AUTOSAVE_FILENAME = "python_car_workspace_temp.xml";
+
+    @Override
+    @NonNull
+    protected String getWorkspaceSavePath() {
+        return SAVE_FILENAME;
+    }
+
+
+    @Override
+    @NonNull
+    protected String getWorkspaceAutosavePath() {
+        return AUTOSAVE_FILENAME;
     }
 
     /**
@@ -206,6 +258,7 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
      * 初始化view
      */
     private void initView() {
+        mBottomView = (BottomView) findViewById(R.id.bottomview);
         WebSettings webSettings = mBridgeWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);//知识js
         mBridgeWebView.setDefaultHandler(new DefaultHandler());
@@ -223,12 +276,6 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
     @Override
     public void setCSBHtml(String csb) {
         mJSBridge.setCBS(csb);
-//        mBridgeWebView.evaluateJavascript("javascript:callJS(\""+csb+"\")", new ValueCallback<String>() {
-//            @Override
-//            public void onReceiveValue(String value) {
-//                //此处为 js 返回的结果
-//            }
-//        });
     }
 
     /**
@@ -271,6 +318,21 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
     }
 
 
+    @Override
+    public void showDialog(String s) {
+        new AlertDialog.Builder(BlocklyActivity.this)
+                .setTitle("提示")
+                .setMessage(s)
+                .setPositiveButton("确定", null)
+                .show();
+    }
+
+    @Override
+    public void clearData() {
+        //打开显示
+        mBottomView.open();
+    }
+
     public void refreshStatus(final View v) {
         String type = (String) v.getTag();
         if (type != null && type.equals("no")) {
@@ -280,8 +342,7 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
                     .setPositiveButton("马上连接", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            showLoadingDialog("小车");
-                            connectSocket();
+                            presenter.startConnect();
                         }
                     })
                     .show();
@@ -290,20 +351,13 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
                     .setTitle("提示")
                     .setMessage("小车连接正常")
                     .setPositiveButton("知道啦", null)
+                    .setNegativeButton("断开连接", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            presenter.breakConnect();
+                        }
+                    })
                     .show();
         }
-//        new AlertDialog.Builder(BlocklyActivity.this)
-//                .setPositiveButton("超声波", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        mJSBridge.setCBS(Integer.toString((int) (Math.random()*100)));
-//                    }
-//                })
-//                .setNegativeButton("init", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        mJSBridge.init();
-//                    }
-//                }).show();
     }
 }

@@ -14,7 +14,14 @@
   -->
 
 <toolbox>
+    <category name="Print" colour="330">
+        <block type="print_"></block>
+    </category>
     <category name="Car" colour="160">
+        <block type="delay_time">
+            <field name="NUM">0</field>
+        </block>
+        <block type="csb_distance"></block>
         <block type="car_move">
             <field name="VALUE">100</field>
             <field name="DIR">moveForward</field>
