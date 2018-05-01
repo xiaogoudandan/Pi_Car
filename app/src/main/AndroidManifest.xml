@@ -30,16 +30,20 @@
 
         </activity>
         <activity
-            android:name=".mvp.activity.BlocklyActivity"
-            android:screenOrientation="landscape"
-            android:theme="@style/AppBlocklyTheme"
-            android:windowSoftInputMode="stateHidden"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            >
+            android:name=".mvp.activity.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".mvp.activity.BlocklyActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppBlocklyTheme"
+            android:windowSoftInputMode="stateHidden">
+
         </activity>
         <activity
             android:name=".mvp.activity.PythonActivity"

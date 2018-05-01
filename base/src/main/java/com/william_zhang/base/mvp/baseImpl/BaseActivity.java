@@ -90,5 +90,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
                  .show();
     }
 
-    public abstract void newStateChange(int state);
+    protected void newStateChange(int state){
+
+    }
 }
