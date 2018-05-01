@@ -63,7 +63,7 @@ public class BlocklyPresenter extends BasePresenterImpl<BlocklyContact.view> imp
                             case SocketBean.FROMSOCKET:
                                 //read数据
                                 Log.d("RxBus data:", socketBean.getResult());
-                                view.setCSBHtml(socketBean.getResult());
+                                view.setCSBHtml(socketBean.getResult().replace("\n", "<br>"));
                                 break;
                             case SocketBean.ISCONNECT:
 
@@ -113,7 +113,7 @@ public class BlocklyPresenter extends BasePresenterImpl<BlocklyContact.view> imp
         if (!isConnect) {
             view.showDialog("未连接小车，请检查连接");
         } else {
-            // view.clearData();
+            view.clearData();
             if (mCarAidl != null) {
                 try {
                     mCarAidl.sendMessage(new Gson().toJson(new SocketBean.SocketBuilder().setType(SocketBean.CODE).setResult(generatedCode).setError("0").build()));

@@ -24,7 +24,7 @@
         "text": "超声波距离"
       }
     ],
-    "output": null,
+    "output": "Number",
     "colour": "#992aff",
     "tooltip": "",
     "helpUrl": ""
@@ -85,11 +85,26 @@
   },
   {
     "type": "print_",
-    "message0": "print %1",
+    "message0": "print %1 %2",
     "args0": [
       {
         "type": "input_value",
-        "name": "VALUE"
+        "name": "VALUE",
+        "check": ["String","Number"]
+      },
+      {
+        "type": "field_dropdown",
+        "name": "DIR",
+        "options": [
+          [
+            "换行",
+            "yes"
+          ],
+          [
+            "不换行",
+            "no"
+          ]
+        ]
       }
     ],
     "previousStatement": null,

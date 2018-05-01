@@ -2,13 +2,13 @@ package com.william_zhang.pi_car.service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.william_zhang.base.utils.GsonUtil;
 import com.william_zhang.base.utils.RxBus;
@@ -64,6 +64,12 @@ public class BlocklyService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return carAidl;
+    }
+
+
+    @Override
+    public void unbindService(ServiceConnection conn) {
+        super.unbindService(conn);
     }
 
     @Override

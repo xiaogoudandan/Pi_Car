@@ -11,6 +11,7 @@ import com.william_zhang.pi_car.constant.Key;
  */
 
 public class CarHtmlManager {
+    private static final String TAG = "BRIDGE";
     BridgeWebView mWebView;
 
     public CarHtmlManager(BridgeWebView webView) {
@@ -26,21 +27,21 @@ public class CarHtmlManager {
         });
     }
 
-    public void executeCode(String code){
-        mWebView.callHandler("executeCode", code, new CallBackFunction() {
+//    public void executeCode(String code) {
+//        mWebView.callHandler("executeCode", code, new CallBackFunction() {
+//            @Override
+//            public void onCallBack(String data) {
+//                Log.e(TAG, data);
+//            }
+//        });
+//    }
+
+
+    public void init() {
+        mWebView.callHandler("dataInit", "fass", new CallBackFunction() {
             @Override
             public void onCallBack(String data) {
-
-            }
-        });
-    }
-
-
-    public void init(){
-        mWebView.callHandler("init", "", new CallBackFunction() {
-            @Override
-            public void onCallBack(String data) {
-
+                Log.e(TAG, data);
             }
         });
     }

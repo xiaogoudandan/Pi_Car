@@ -25,12 +25,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mvp.activity.CarActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".mvp.activity.CarActivity"></activity>
         <activity android:name=".mvp.activity.TestActivity">
 
         </activity>
@@ -39,22 +34,22 @@
             android:screenOrientation="landscape"
             android:theme="@style/AppBlocklyTheme"
             android:windowSoftInputMode="stateHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".mvp.activity.PythonActivity"
             android:label="@string/python_activity_name"
             android:taskAffinity="com.wolliam_zhang.pi_car.mvp.activity.PythonActivity"
             android:theme="@style/AppBlocklyTheme"
-            android:windowSoftInputMode="stateHidden">
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:windowSoftInputMode="stateHidden"></activity>
 
         <service android:name=".service.CarSocketService" />
-        <service android:name=".service.BlocklyService" >
+        <service android:name=".service.BlocklyService">
             <intent-filter>
                 <action android:name="com.william_zhang.pi_car.service.BlocklyService"></action>
             </intent-filter>

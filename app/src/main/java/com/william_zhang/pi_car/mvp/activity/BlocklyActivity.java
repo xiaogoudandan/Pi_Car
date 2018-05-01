@@ -125,9 +125,14 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
      * 断开服务
      */
     @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
     protected void onDestroy() {
-        this.getApplicationContext().unbindService(serviceConnection);
         super.onDestroy();
+        this.getApplicationContext().unbindService(serviceConnection);
     }
 
     /**
@@ -140,13 +145,14 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
         return new BlocklyPresenter(this);
     }
 
+    AlertDialog showCode = null;
     /**
      * 下面是blockly相关 代码
      */
     CodeGenerationRequest.CodeGeneratorCallback codeGeneratorCallback = new CodeGenerationRequest.CodeGeneratorCallback() {
         @Override
         public void onFinishCodeGeneration(final String generatedCode) {
-            new AlertDialog.Builder(BlocklyActivity.this).setTitle("code").setMessage(generatedCode).setPositiveButton("运行", new DialogInterface.OnClickListener() {
+            showCode = new AlertDialog.Builder(BlocklyActivity.this).setTitle("code").setMessage(generatedCode).setPositiveButton("运行", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     presenter.sendCode(generatedCode);
@@ -155,9 +161,6 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
             Log.e(TAG, generatedCode);
         }
     };
-    private static final List<String> JAVASCRIPT_GENERATORS = Arrays.asList(
-            "car/generators.js"
-    );
 
     private static final LanguageDefinition PYTHON_LANGUAGE_DEF
             = new LanguageDefinition("car/python_compressed.js", "Blockly.Python");
@@ -166,8 +169,8 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
     private static final List<String> PYTHON_GENERATORS = Arrays.asList(
             "car/generators_python.js"
     );
-    private static final String BLOCK_TOOLBOX = DefaultBlocks.TOOLBOX_PATH;
-    private static final List<String> BLOCK_DEFINITIONS = DefaultBlocks.getAllBlockDefinitions();
+
+
     static final List<String> CAR_BLOCK_DEFINITIONS = Arrays.asList(
             DefaultBlocks.COLOR_BLOCKS_PATH,
             DefaultBlocks.LOGIC_BLOCKS_PATH,
@@ -265,12 +268,8 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
         mBridgeWebView.setWebViewClient(new BridgeWebViewClient(mBridgeWebView));
         mJSBridge = new CarHtmlManager(mBridgeWebView);
         mBridgeWebView.loadUrl(Key.CARHTML);
+        mJSBridge.init();
         app_socket_status = (ImageButton) findViewById(R.id.app_blockly_status);
-        //((ImageButton) findViewById(R.id.blockly_center_view_button)).setImageDrawable(AppUtil.setIconColor(getResources().getDrawable(R.drawable.reset_view), AppUtil.getColorPrimary(getApplicationContext())));
-        //((ImageButton) findViewById(R.id.blockly_zoom_out_button)).setImageDrawable(AppUtil.setIconColor(getResources().getDrawable(R.drawable.zoom_out), AppUtil.getColorPrimary(getApplicationContext())));
-        //((ImageButton) findViewById(R.id.blockly_zoom_in_button)).setImageDrawable(AppUtil.setIconColor(getResources().getDrawable(R.drawable.zoom_in), AppUtil.getColorPrimary(getApplicationContext())));
-        //Drawable drawable =AppUtil.setIconColor(ContextCompat.getDrawable(getApplicationContext(), R.drawable.reset_view), AppUtil.getColorPrimary(getApplicationContext()));
-
     }
 
     @Override
@@ -329,8 +328,13 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
 
     @Override
     public void clearData() {
-        //打开显示
-        mBottomView.open();
+        //初始化
+        BlocklyActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mJSBridge.init();
+            }
+        });
     }
 
     public void refreshStatus(final View v) {
