@@ -108,6 +108,9 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        Intent intent = getIntent();
+        SAVE_FILENAME = intent.getStringExtra(Key.PROJECT_NAME);
+        AUTOSAVE_FILENAME = intent.getStringExtra(Key.AUTO_NAME);
         super.onCreate(savedInstanceState);
         presenter.init();//设置网页 以及注册rxbus
         this.getApplicationContext().bindService(new Intent(this, BlocklyService.class), serviceConnection, Context.BIND_AUTO_CREATE);
@@ -224,8 +227,8 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
     }
 
 
-    private static final String SAVE_FILENAME = "python_car_workspace.xml";
-    private static final String AUTOSAVE_FILENAME = "python_car_workspace_temp.xml";
+    private String SAVE_FILENAME = "python_car_workspace.xml";
+    private String AUTOSAVE_FILENAME = "python_car_workspace_temp.xml";
 
     @Override
     @NonNull
@@ -261,6 +264,7 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
      * 初始化view
      */
     private void initView() {
+        mActionBar.setTitle(SAVE_FILENAME);
         mBottomView = (BottomView) findViewById(R.id.bottomview);
         WebSettings webSettings = mBridgeWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);//知识js

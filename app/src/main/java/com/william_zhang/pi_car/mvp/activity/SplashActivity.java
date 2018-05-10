@@ -129,7 +129,7 @@ public class SplashActivity extends BaseActivity<SplashContact.presenter> implem
 
     @Override
     public void forWord() {
-        ForwardUtil.openActivity(this, ActivityId.BLOCKLY_CAR, new Intent());
+        ForwardUtil.openActivity(this, ActivityId.HOME, new Intent());
         finish();
     }
 }

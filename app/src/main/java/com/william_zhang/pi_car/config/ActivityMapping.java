@@ -1,6 +1,7 @@
 package com.william_zhang.pi_car.config;
 
 import com.william_zhang.pi_car.mvp.activity.BlocklyActivity;
+import com.william_zhang.pi_car.mvp.activity.HomeActivity;
 
 import java.util.HashMap;
 
@@ -24,13 +25,14 @@ public class ActivityMapping {
     }
 
     public ActivityMapping() {
-        mHashmap.put(ActivityId.BLOCKLY_CAR, new ActivityStruct(BlocklyActivity.class, "首页"));
+        mHashmap.put(ActivityId.BLOCKLY_CAR, new ActivityStruct(BlocklyActivity.class, "blockly"));
+        mHashmap.put(ActivityId.HOME, new ActivityStruct(HomeActivity.class, "首页"));
     }
 
-    public ActivityStruct getStruct(String id){
-        if(mHashmap.containsKey(id)) {
+    public ActivityStruct getStruct(String id) {
+        if (mHashmap.containsKey(id)) {
             return mHashmap.get(id);
-        }else {
+        } else {
             return null;
         }
     }

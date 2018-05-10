@@ -6,4 +6,5 @@ package com.william_zhang.pi_car.config;
 
 public class ActivityId {
     public final static String BLOCKLY_CAR="1";
+    public final static String HOME ="2";
 }

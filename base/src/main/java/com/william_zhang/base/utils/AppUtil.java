@@ -3,10 +3,13 @@ package com.william_zhang.base.utils;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
+import android.os.Environment;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.TypedValue;
 
 import com.william_zhang.base.R;
+
+import java.io.File;
 
 /**
  * Created by william_zhang on 2018/4/11.
@@ -39,5 +42,15 @@ public class AppUtil {
         Drawable drawable1 = DrawableCompat.wrap(drawable);
         DrawableCompat.setTintList(drawable1, ColorStateList.valueOf(color));
         return drawable1;
+    }
+
+    public static boolean deleteDataFile(String fileName, Context context) {
+        //data/data/<package name>
+        File file = new File(context.getFilesDir().getPath() + "//" + fileName);
+        if (file.exists()) {
+            return file.delete();
+        } else {
+            return false;
+        }
     }
 }
