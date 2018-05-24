@@ -11,7 +11,7 @@
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 160,
+    "colour": "#992aff",
     "tooltip": "delay time"
   },
   {
@@ -25,6 +25,30 @@
       }
     ],
     "output": "Number",
+    "colour": "#992aff",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
+    "type": "left_right_avoidance",
+    "message0": "%1 红外线",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "DIR",
+        "options": [
+          [
+            "左侧",
+            "leftAvoidance"
+          ],
+          [
+            "右侧",
+            "rightAvoidance"
+          ]
+        ]
+      }
+    ],
+    "output": "Boolean",
     "colour": "#992aff",
     "tooltip": "",
     "helpUrl": ""
@@ -80,7 +104,7 @@
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 160,
+    "colour": "#992aff",
     "tooltip": "Moves the turtle forward or backward by the specified amount."
   },
   {
@@ -90,7 +114,10 @@
       {
         "type": "input_value",
         "name": "VALUE",
-        "check": ["String","Number"]
+        "check": [
+          "String",
+          "Number"
+        ]
       },
       {
         "type": "field_dropdown",
@@ -110,7 +137,7 @@
     "previousStatement": null,
     "nextStatement": null,
     "inputsInline": true,
-    "colour": 330,
+    "colour": "#008B8B",
     "tooltip": "",
     "helpUrl": ""
   }

@@ -1,4 +1,4 @@
-[
+[//120
   {
     "type": "controls_repeat_ext",
     "message0": "repeat %1 times %2 do %3",
@@ -17,7 +17,7 @@
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 120,
+    "colour": "#00CD66",
     "inputsInline": true,
     "tooltip": "Do some statements several times.",
     "helpUrl": "https://en.wikipedia.org/wiki/For_loop"
@@ -52,7 +52,7 @@
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 120,
+    "colour": "#00CD66",
     "tooltip": "While a value is false, then do some statements.",
     "helpUrl": "https://github.com/google/blockly/wiki/Loops#repeat"
   },
@@ -91,7 +91,7 @@
     "inputsInline": true,
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 120,
+    "colour": "#00CD66",
     "helpUrl": "https://github.com/google/blockly/wiki/Loops#count-with"
   },
   {
@@ -115,7 +115,7 @@
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 120,
+    "colour": "#00CD66",
     "helpUrl": "https://github.com/google/blockly/wiki/Loops#for-each"
   },
   {
@@ -138,7 +138,7 @@
       }
     ],
     "previousStatement": null,
-    "colour": 120,
+    "colour": "#00CD66",
     "helpUrl": "https://github.com/google/blockly/wiki/Loops#loop-termination-blocks",
     "TODO(#375)": "https://github.com/google/blockly-android/issues/375"
   }

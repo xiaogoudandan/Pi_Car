@@ -274,6 +274,9 @@ public class HomeActivity extends BaseActivity<HomeContact.presenter> implements
     }
 
     private void toBlocklyActivity(ProjectModel projectModel) {
+        if (appHomeSearch.isSearchOpen()) {
+            appHomeSearch.closeSearch();
+        }
         Intent intent = new Intent();
         intent.putExtra(Key.PROJECT_NAME, projectModel.getProjectName());
         intent.putExtra(Key.AUTO_NAME, projectModel.getAutoSaveName());

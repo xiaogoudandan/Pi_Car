@@ -1,4 +1,4 @@
-[
+[//230
   {
     "type": "math_number",
     "message0": "%1",
@@ -9,7 +9,7 @@
         "text": "0"
       }
     ],
-    "colour": 230,
+    "colour": "#4169E1",
     "output": "Number",
     "tooltip": "A number.",
     "helpUrl": "https://en.wikipedia.org/wiki/Number"
@@ -25,7 +25,7 @@
         "text": "3.14"
       }
     ],
-    "colour": 230,
+    "colour": "#4169E1",
     "output": "Number",
     "tooltip": "A number.",
     "helpUrl": "https://en.wikipedia.org/wiki/Number"
@@ -58,7 +58,7 @@
     ],
     "inputsInline": true,
     "output": "Number",
-    "colour": 230,
+    "colour": "#4169E1",
     "helpUrl": "https://en.wikipedia.org/wiki/Arithmetic"
   },
   {
@@ -85,7 +85,7 @@
       }
     ],
     "output": "Number",
-    "colour": 230,
+    "colour": "#4169E1",
     "helpUrl": "https://en.wikipedia.org/wiki/Square_root"
   },
   {
@@ -111,7 +111,7 @@
       }
     ],
     "output": "Number",
-    "colour": 230,
+    "colour": "#4169E1",
     "helpUrl": "https://en.wikipedia.org/wiki/Trigonometric_functions"
   },
   {
@@ -136,7 +136,7 @@
       }
     ],
     "output": "Number",
-    "colour": 230,
+    "colour": "#4169E1",
     "tooltip": "Return one of the common constants: π (3.141…), e (2.718…), φ (1.618…), sqrt(2) (1.414…), sqrt(½) (0.707…), or ∞ (infinity).",
     "helpUrl": "https://en.wikipedia.org/wiki/Mathematical_constant"
   },
@@ -164,7 +164,7 @@
       }
     ],
     "inputsInline": true,
-    "colour": 230,
+    "colour": "#4169E1",
     "output": "Boolean",
     "tooltip": "Check if a number is an even, odd, prime, whole, positive, or negative. Returns true or false.",
     "TODO(#376)": "https://github.com/google/blockly-android/issues/376",
@@ -187,7 +187,7 @@
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 330,
+    "colour": "#CD5C5C",
     "helpUrl": "https://en.wikipedia.org/wiki/Programming_idiom#Incrementing_a_counter"
   },
   {
@@ -210,7 +210,7 @@
       }
     ],
     "output": "Number",
-    "colour": 230,
+    "colour": "#4169E1",
     "tooltip": "Round a number up or down.",
     "helpUrl": "https://en.wikipedia.org/wiki/Rounding"
   },
@@ -231,7 +231,7 @@
     ],
     "inputsInline": true,
     "output": "Number",
-    "colour": 230,
+    "colour": "#4169E1",
     "tooltip": "Return the remainder from dividing the two numbers.",
     "helpUrl": "https://en.wikipedia.org/wiki/Modulo_operation"
   },
@@ -257,7 +257,7 @@
     ],
     "inputsInline": true,
     "output": "Number",
-    "colour": 230,
+    "colour": "#4169E1",
     "tooltip": "Constrain a number to be between the specified limits (inclusive).",
     "helpUrl": "https://en.wikipedia.org/wiki/Clamping_%28graphics%29"
   },
@@ -278,7 +278,7 @@
     ],
     "inputsInline": true,
     "output": "Number",
-    "colour": 230,
+    "colour": "#4169E1",
     "tooltip": "Return a random integer between the two specified limits, inclusive.",
     "helpUrl": "https://en.wikipedia.org/wiki/Random_number_generation"
   },
@@ -286,7 +286,7 @@
     "type": "math_random_float",
     "message0": "random fraction",
     "output": "Number",
-    "colour": 230,
+    "colour": "#4169E1",
     "tooltip": "Return a random fraction between 0.0 (inclusive) and 1.0 (exclusive).",
     "helpUrl": "https://en.wikipedia.org/wiki/Random_number_generation"
   }

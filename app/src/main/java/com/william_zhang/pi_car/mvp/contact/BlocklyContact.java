@@ -32,5 +32,7 @@ public interface BlocklyContact {
         void showDialog(String s);
 
         void clearData();
+
+        void breakConnect();
     }
 }

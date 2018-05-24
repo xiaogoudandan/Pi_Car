@@ -306,7 +306,7 @@ public class BlocklyService extends Service {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            rxBusPost(SocketBean.ISCONNECT, "no", "");
+            rxBusPost(SocketBean.BREAKCONNECT, "no", "");
         }
     }
 

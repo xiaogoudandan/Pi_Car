@@ -1,4 +1,5 @@
 [
+  //210
   {
     "type": "controls_if",
     "message0": "if %1 do %2",
@@ -15,7 +16,7 @@
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 210,
+    "colour": "#4682B4",
     "mutator": "controls_if_mutator",
     "tooltip": "If a value is true, then do some statements."
   },
@@ -45,7 +46,7 @@
     ],
     "previousStatement": null,
     "nextStatement": null,
-    "colour": 210,
+    "colour": "#4682B4",
     "tooltip": "If a value is true, then do the first block of statements. Otherwise, do the second block of statements.",
     "helpUrl": "https://github.com/google/blockly/wiki/IfElse"
   },
@@ -94,7 +95,7 @@
     ],
     "inputsInline": true,
     "output": "Boolean",
-    "colour": 210,
+    "colour": "#4682B4",
     "tooltip": "",
     "helpUrl": "https://en.wikipedia.org/wiki/Equality_(mathematics)"
   },
@@ -127,7 +128,7 @@
     ],
     "inputsInline": true,
     "output": "Boolean",
-    "colour": 210,
+    "colour": "#4682B4",
     "tooltip": "",
     "helpUrl": "https://github.com/google/blockly/wiki/Logic#logical-operations"
   },
@@ -142,7 +143,7 @@
       }
     ],
     "output": "Boolean",
-    "colour": 210,
+    "colour": "#4682B4",
     "tooltip": "Returns true if the input is false. Returns false if the input is true.",
     "helpUrl": "https://github.com/google/blockly/wiki/Logic#not"
   },
@@ -166,7 +167,7 @@
       }
     ],
     "output": "Boolean",
-    "colour": 210,
+    "colour": "#4682B4",
     "tooltip": "Returns either true or false.",
     "helpUrl": "https://github.com/google/blockly/wiki/Logic#values"
   },
@@ -174,7 +175,7 @@
     "type": "logic_null",
     "message0": "null",
     "output": null,
-    "colour": 210,
+    "colour": "#4682B4",
     "tooltip": "Returns null.",
     "helpUrl": "https://en.wikipedia.org/wiki/Nullable_type"
   },
@@ -196,7 +197,7 @@
       }
     ],
     "output": null,
-    "colour": 210,
+    "colour": "#4682B4",
     "tooltip": "Check the condition in \"test\". If the condition is true, returns the \"if true\" value; otherwise returns the \"if false\" value.",
     "helpUrl": "https://en.wikipedia.org/wiki/%3F:",
     "TODO(#374)": "https://github.com/google/blockly-android/issues/374"

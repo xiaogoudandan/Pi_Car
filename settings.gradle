@@ -1,1 +1,1 @@
-include ':app',':base',':blocklylib-core', ':blocklylib-vertical'
+include ':app',':base',':blocklylib-core', ':blocklylib-vertical','guide'

@@ -24,6 +24,12 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.app.hubert.guide.NewbieGuide;
+import com.app.hubert.guide.core.Controller;
+import com.app.hubert.guide.listener.OnGuideChangedListener;
+import com.app.hubert.guide.listener.OnPageChangedListener;
+import com.app.hubert.guide.model.GuidePage;
+import com.app.hubert.guide.model.HighLight;
 import com.github.lzyzsd.jsbridge.BridgeWebView;
 import com.github.lzyzsd.jsbridge.BridgeWebViewClient;
 import com.github.lzyzsd.jsbridge.DefaultHandler;
@@ -61,7 +67,7 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             carAidl = CarAidlInterface.Stub.asInterface(iBinder);
             presenter.setAIDL(carAidl);
-            presenter.startConnect();
+            //presenter.startConnect();
         }
 
         @Override
@@ -85,23 +91,70 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
         super.onResume();
     }
 
-    /**
-     * 设置底部显示框位置
-     */
-    private void setBottomView() {
-        RelativeLayout rl_bottomview = (RelativeLayout) findViewById(R.id.rl_bottomview);
-        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) rl_bottomview.getLayoutParams();
-        layoutParams.topMargin = ScreenUtil.getScreenHeight(getApplicationContext()) - ScreenUtil.dip2px(getApplicationContext(), 56f) - ScreenUtil.getStatusHeight(getApplicationContext()) - ScreenUtil.dip2px(getApplicationContext(), 20f);
-        rl_bottomview.setLayoutParams(layoutParams);
-    }
+//    /**
+//     * 设置底部显示框位置
+//     */
+//    private void setBottomView() {
+//        RelativeLayout rl_bottomview = (RelativeLayout) findViewById(R.id.rl_bottomview);
+//        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) rl_bottomview.getLayoutParams();
+//        layoutParams.topMargin = ScreenUtil.getScreenHeight(getApplicationContext()) - ScreenUtil.dip2px(getApplicationContext(), 56f) - ScreenUtil.getStatusHeight(getApplicationContext()) - ScreenUtil.dip2px(getApplicationContext(), 20f);
+//        rl_bottomview.setLayoutParams(layoutParams);
+//    }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (!frist) {
             mBottomView.close();
+            showGuide();
             frist = true;
         }
+    }
+
+    private void showGuide() {
+        NewbieGuide.with(this)
+                .setLabel("blockly")
+                .setOnGuideChangedListener(new OnGuideChangedListener() {
+                    @Override
+                    public void onShowed(Controller controller) {
+
+                    }
+
+                    @Override
+                    public void onRemoved(Controller controller) {
+
+                    }
+                }).setOnPageChangedListener(new OnPageChangedListener() {
+            @Override
+            public void onPageChanged(int page) {
+
+            }
+        }).alwaysShow(true)
+                .addGuidePage(
+                        GuidePage.newInstance()
+                                .addHighLight(findViewById(R.id.action_save), HighLight.Shape.CIRCLE)
+                                .addHighLight(findViewById(R.id.action_load), HighLight.Shape.CIRCLE)
+                                .addHighLight(findViewById(R.id.action_clear), HighLight.Shape.CIRCLE)
+                                .addHighLight(findViewById(R.id.action_run), HighLight.Shape.CIRCLE)
+                                .setLayoutRes(R.layout.guide_toolbar)
+                ).addGuidePage(
+                GuidePage.newInstance()
+                        .addHighLight(findViewById(R.id.blockly_categories), HighLight.Shape.RECTANGLE)
+                        .setLayoutRes(R.layout.guide_toolbox))
+                .addGuidePage(
+                        GuidePage.newInstance()
+                                .addHighLight(findViewById(R.id.blockly_workspace), HighLight.Shape.RECTANGLE)
+                                .setLayoutRes(R.layout.guide_work))
+                .addGuidePage(
+                        GuidePage.newInstance()
+                                .addHighLight(app_socket_status, HighLight.Shape.CIRCLE)
+                                .addHighLight(findViewById(R.id.blockly_zoom_in_button), HighLight.Shape.CIRCLE)
+                                .addHighLight(findViewById(R.id.blockly_zoom_out_button), HighLight.Shape.CIRCLE)
+                                .addHighLight(findViewById(R.id.blockly_center_view_button), HighLight.Shape.CIRCLE)
+                                .addHighLight(findViewById(R.id.blockly_trash_icon), HighLight.Shape.CIRCLE)
+                                .setLayoutRes(R.layout.guide_view)
+                )
+                .show();
     }
 
     private boolean frist = false;
@@ -264,7 +317,7 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
      * 初始化view
      */
     private void initView() {
-        mActionBar.setTitle(SAVE_FILENAME);
+        setTitle(SAVE_FILENAME);
         mBottomView = (BottomView) findViewById(R.id.bottomview);
         WebSettings webSettings = mBridgeWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);//知识js
@@ -339,6 +392,12 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
                 mJSBridge.init();
             }
         });
+    }
+
+    @Override
+    public void breakConnect() {
+        app_socket_status.setImageResource(R.drawable.gantanhao_d81e06);
+        app_socket_status.setTag("no");
     }
 
     public void refreshStatus(final View v) {

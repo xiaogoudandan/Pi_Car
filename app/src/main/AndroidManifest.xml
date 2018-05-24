@@ -51,6 +51,7 @@
         <activity
             android:name=".mvp.activity.BlocklyActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label=""
             android:screenOrientation="landscape"
             android:theme="@style/AppBlocklyTheme"
             android:windowSoftInputMode="stateHidden">

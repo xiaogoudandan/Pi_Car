@@ -27,6 +27,9 @@
             <field name="VALUE">100</field>
             <field name="DIR">moveForward</field>
         </block>
+        <block type="left_right_avoidance">
+            <field name="DIR">leftAvoidance</field>
+        </block>
     </category>
     <category name="Logic" colour="210">
         <block type="controls_if"></block>

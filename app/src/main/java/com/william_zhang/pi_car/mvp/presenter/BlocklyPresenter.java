@@ -80,6 +80,11 @@ public class BlocklyPresenter extends BasePresenterImpl<BlocklyContact.view> imp
                                     view.connectFail();
                                 }
                                 break;
+                            case SocketBean.BREAKCONNECT:
+                                view.showDialog("已经断开连接");
+                                view.breakConnect();
+                                Log.d("RxBus：", "connect break");
+                                break;
                         }
                     }
                 }, new Consumer<Throwable>() {

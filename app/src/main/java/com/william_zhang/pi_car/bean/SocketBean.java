@@ -9,6 +9,7 @@ public class SocketBean {
     public static final int FROMSOCKET = 1;
     //连接状态
     public static final int ISCONNECT = 2;
+    public static final int BREAKCONNECT = 5;
     //发送数据状态
     //代码
     public static final int CODE = 3;
