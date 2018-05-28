@@ -109,6 +109,12 @@ public class HomeActivity extends BaseActivity<HomeContact.presenter> implements
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        dismissLoadingDialog();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_home, menu);
         MenuItem item = menu.findItem(R.id.app_menu_search);
@@ -154,10 +160,7 @@ public class HomeActivity extends BaseActivity<HomeContact.presenter> implements
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 ProjectModel projectModel = (ProjectModel) adapter.getData().get(position);
-                Message message = new Message();
-                message.obj = projectModel;
-                message.what = 1;
-                handler.sendMessageDelayed(message, 500);
+                toBlockly(projectModel);
             }
         });
         mAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
@@ -253,6 +256,7 @@ public class HomeActivity extends BaseActivity<HomeContact.presenter> implements
 //        intent.putExtra(Key.PROJECT_NAME, projectModel.getProjectName());
 //        intent.putExtra(Key.AUTO_NAME, projectModel.getAutoSaveName());
 //        ForwardUtil.openActivity(HomeActivity.this, ActivityId.BLOCKLY_CAR, intent);
+        showLoadingDialog("loading");
         Message message = new Message();
         message.obj = projectModel;
         message.what = 1;

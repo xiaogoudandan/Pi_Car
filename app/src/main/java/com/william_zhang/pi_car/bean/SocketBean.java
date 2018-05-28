@@ -10,7 +10,10 @@ public class SocketBean {
     //连接状态
     public static final int ISCONNECT = 2;
     public static final int BREAKCONNECT = 5;
-    //发送数据状态
+    //暂停
+    public static final int STOP = 6;
+    //开始
+    public static final int START = 7;
     //代码
     public static final int CODE = 3;
     //控制

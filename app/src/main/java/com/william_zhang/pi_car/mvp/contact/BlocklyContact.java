@@ -20,6 +20,8 @@ public interface BlocklyContact {
         void breakConnect();
 
         void startConnect();
+
+        void stopRun();
     }
 
     interface view extends BaseView {
@@ -34,5 +36,9 @@ public interface BlocklyContact {
         void clearData();
 
         void breakConnect();
+
+        void StartRun();
+
+        void stopRun();
     }
 }

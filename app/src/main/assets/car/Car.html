@@ -2,12 +2,45 @@
 <html lang="en">
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width"/>
     <title>Title</title>
     <script src="carjs.js" type="text/javascript"></script>
     <script src="WebViewJavascriptBridge.js" type="text/javascript"></script>
+    <style type="text/css">
+    .btn_style{
+     background: #CD2626;
+     width:28px;
+     height:28px;
+    }
+    .comments {
+     width:100%;
+     height:100%;
+     }
+     .demobox{
+     width:100%;
+     line-height:30px;
+     overflow:auto;
+     display:block;
+     margin:-5px 0px 0px 0px;
+     }
+     .img_clear{
+     width:30px;
+     height:30px;
+     }
+
+    </style>
+
 </head>
 <body>
-<p id="codeResult"></p>
+<table border="0">
+    <tr>
+        <td><input id="stop_run" type="button" class="btn_style" onclick="stopRun();"></td>
+        <td><img src="dustbin.png" alt="" class="img_clear" onclick="clearData();"></td>
+    </tr>
+</table>
+<!--<input id="stop_run" type="button" class="btn_style" onclick="stopRun();">-->
+<!--<img src="dustbin.png" alt="" class="img_clear" onclick="clearData();">-->
+<p id="codeResult" class="demobox"></p>
 <!--<TABLE align="center">-->
 <!--<tr>-->
 <!--<td>CSB：</td>-->

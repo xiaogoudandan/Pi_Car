@@ -325,7 +325,13 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
         mBridgeWebView.setWebViewClient(new BridgeWebViewClient(mBridgeWebView));
         mJSBridge = new CarHtmlManager(mBridgeWebView);
         mBridgeWebView.loadUrl(Key.CARHTML);
-        mJSBridge.init();
+        mJSBridge.init(new CarHtmlManager.JsLstener() {
+            @Override
+            public void stop() {
+                Log.e(TAG, "stop");
+                presenter.stopRun();
+            }
+        });
         app_socket_status = (ImageButton) findViewById(R.id.app_blockly_status);
     }
 
@@ -389,7 +395,7 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
         BlocklyActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mJSBridge.init();
+                mJSBridge.clear();
             }
         });
     }
@@ -398,6 +404,16 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
     public void breakConnect() {
         app_socket_status.setImageResource(R.drawable.gantanhao_d81e06);
         app_socket_status.setTag("no");
+    }
+
+    @Override
+    public void StartRun() {
+        mJSBridge.startRun();
+    }
+
+    @Override
+    public void stopRun() {
+        mJSBridge.stopRun();
     }
 
     public void refreshStatus(final View v) {

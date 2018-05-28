@@ -21,7 +21,7 @@ import com.zyao89.view.zloading.Z_TYPE;
 
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView {
     protected ZLoadingDialog dialog;
-    protected Z_TYPE z_type=Z_TYPE.ELASTIC_BALL;
+    protected Z_TYPE z_type = Z_TYPE.ELASTIC_BALL;
     protected P presenter;
     public Context context;
 
@@ -60,7 +60,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
                 newStateChange(state);
             }
         });
-        registerReceiver(NetBroadcastReceiver.getInstance(),filter);
+        registerReceiver(NetBroadcastReceiver.getInstance(), filter);
     }
 
     @Override
@@ -78,19 +78,23 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     @Override
     public void dismissLoadingDialog() {
-        dialog.dismiss();
+        if (dialog != null)
+            dialog.dismiss();
     }
 
     @Override
     public void showLoadingDialog(String msg) {
-         dialog=new ZLoadingDialog(context);
-         dialog.setLoadingBuilder(z_type)
-                 .setLoadingColor(Color.parseColor("#7B68EE"))
-                 .setHintText(msg)
-                 .show();
+        dialog = new ZLoadingDialog(context);
+        dialog.setLoadingBuilder(z_type)
+                .setLoadingColor(Color.parseColor("#7B68EE"))
+                .setHintText(msg)
+                .setCancelable(false)
+                .setCanceledOnTouchOutside(false)
+                .create()
+                .show();
     }
 
-    protected void newStateChange(int state){
+    protected void newStateChange(int state) {
 
     }
 }

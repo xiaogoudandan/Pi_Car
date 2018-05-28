@@ -95,6 +95,8 @@ public abstract class BaseBlocklyActivity<P extends BasePresenter> extends Abstr
                 .setLoadingColor(Color.parseColor("#4CAF50"))
                 .setHintText(msg)
                 .setCancelable(false)
+                .setCanceledOnTouchOutside(false)
+                .create()
                 .show();
     }
 

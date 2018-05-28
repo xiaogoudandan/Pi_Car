@@ -85,6 +85,14 @@ public class BlocklyPresenter extends BasePresenterImpl<BlocklyContact.view> imp
                                 view.breakConnect();
                                 Log.d("RxBus：", "connect break");
                                 break;
+                            case SocketBean.STOP:
+                                view.stopRun();
+                                Log.d("RxBus：", "stop run");
+                                break;
+                            case SocketBean.START:
+                                view.StartRun();
+                                Log.d("RxBus：", "start run");
+                                break;
                         }
                     }
                 }, new Consumer<Throwable>() {
@@ -144,5 +152,16 @@ public class BlocklyPresenter extends BasePresenterImpl<BlocklyContact.view> imp
     public void startConnect() {
         handler.sendEmptyMessageDelayed(1, 500);
         handler.sendEmptyMessageDelayed(2, 2000);
+    }
+
+    @Override
+    public void stopRun() {
+        if (mCarAidl != null) {
+            try {
+                mCarAidl.sendMessage(new Gson().toJson(new SocketBean.SocketBuilder().setType(SocketBean.STOP).setResult("").setError("0").build()));
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
