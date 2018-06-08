@@ -108,4 +108,10 @@ public class HomePresenter extends BasePresenterImpl<HomeContact.view> implement
             view.showSnacker("删除失败");
         }
     }
+
+    @Override
+    public void detach() {
+        handler.removeCallbacksAndMessages(null);
+        super.detach();
+    }
 }

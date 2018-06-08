@@ -13,6 +13,13 @@ Blockly.Python['left_right_avoidance']=function(block){
   return [code, Blockly.Python.ORDER_NONE];
 }
 
+
+Blockly.Python['left_right_trailing']=function(block){
+  var code = 'Car.' + block.getFieldValue('DIR') + '()';
+  return [code, Blockly.Python.ORDER_NONE];
+}
+
+
 Blockly.Python['csb_distance'] = function(block) {
   var text_name = block.getFieldValue('NAME');
   // TODO: Assemble Python into code variable.

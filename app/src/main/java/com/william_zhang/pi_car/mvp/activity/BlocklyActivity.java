@@ -111,6 +111,9 @@ public class BlocklyActivity extends BaseBlocklyActivity<BlocklyContact.presente
         }
     }
 
+    /**
+     * 引导页
+     */
     private void showGuide() {
         NewbieGuide.with(this)
                 .setLabel("blockly")

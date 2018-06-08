@@ -15,6 +15,30 @@
     "tooltip": "delay time"
   },
   {
+    "type": "left_right_trailing",
+    "message0": "%1 寻迹",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "DIR",
+        "options": [
+          [
+            "左侧",
+            "leftTrailing"
+          ],
+          [
+            "右侧",
+            "rightTrailing"
+          ]
+        ]
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#992aff",
+    "tooltip": "",
+    "helpUrl": ""
+  },
+  {
     "type": "csb_distance",
     "message0": "%1",
     "args0": [

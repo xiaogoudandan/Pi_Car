@@ -61,6 +61,7 @@ function init() {
                 console.log("stopRun");
                 CodeResult = CodeResult + "stop over！" + "<br>";
                 document.getElementById("codeResult").innerHTML = CodeResult;
+                document.getElementById("codeResult").scrollTop = document.getElementById("codeResult").scrollHeight;
                 var responseData = "stopRun";
                 responseCallback(responseData);
             });

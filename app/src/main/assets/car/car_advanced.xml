@@ -20,7 +20,7 @@
     </category>
     <category name="Car" colour="160">
         <block type="delay_time">
-            <field name="NUM">0</field>
+            <field name="NUM">1000</field>
         </block>
         <block type="csb_distance"></block>
         <block type="car_move">
@@ -29,6 +29,9 @@
         </block>
         <block type="left_right_avoidance">
             <field name="DIR">leftAvoidance</field>
+        </block>
+        <block type="left_right_trailing">
+            <field name="DIR">leftTrailing</field>
         </block>
     </category>
     <category name="Logic" colour="210">
